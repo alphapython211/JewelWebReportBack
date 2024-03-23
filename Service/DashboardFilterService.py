@@ -56,11 +56,12 @@ def GetItem(input:CardandChartInput):
     try:
         param=""
         
-        param +=f" @strItemGroup='{input.strItemGroup}',"      
-        param +=f" @strProduct='{input.strProduct}'"
+        param +=f" @strItemGroupID='{input.strItemGroup}',"      
+        param +=f" @strProductID='{input.strProduct}'"
    
         result.lstResult=DBConfig.ExecuteDataReader(param,"Wr_mstitem_GetForHelp","")
     except  Exception as E:
+        print(E)
         result.HasError=True
         result.Message.append(E)
     return result 
@@ -97,9 +98,9 @@ def GetItemWithSubitem(input:CardandChartInput):
         if(input.PageSize>0):
             param +=f" @PageSize={input.PageSize},"            
         if(input.strItem!=''):
-            param +=f" @strItem='{input.strItem}',"
+            param +=f" @strItemID='{input.strItem}',"
         if(input.strItemSubitem!=''):
-            param +=f" @strItemSubitem='{input.strItemSubitem}',"            
+            param +=f" @strItemSubitemID='{input.strItemSubitem}',"            
         param +=f" @Search='{input.Search}'"
         result.lstResult=DBConfig.ExecuteDataReader(param,"Wr_mstItemSub_GetForHelp","")
     except  Exception as E:
@@ -175,9 +176,9 @@ def GetDesignCatalogue(input:CardandChartInput):
         if(input.PageSize>0):
             param +=f" @PageSize={input.PageSize},"            
         if(input.strItem!=''):
-            param +=f" @strItem='{input.strItem}',"
+            param +=f" @strItemID='{input.strItem}',"
         if(input.strItemSubitem!=''):
-            param +=f" @strItemSubitem='{input.strItemSubitem}',"            
+            param +=f" @strItemSubitemID='{input.strItemSubitem}',"            
         param +=f" @Search='{input.Search}'"
         
         result.lstResult=DBConfig.ExecuteDataReader(param,"Wr_mstDesignCatalog_GetForHelp","")
